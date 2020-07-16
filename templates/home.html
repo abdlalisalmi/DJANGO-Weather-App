@@ -1,0 +1,83 @@
+{% extends 'base.html' %} {% load static %}
+
+{% block title %}{{ block.super }} | Home{% endblock title %}
+
+{% block style %}
+<link href="{% static 'css/weatherIcons.css' %}" rel="stylesheet" />
+<link href="{% static 'css/app.css' %}" rel="stylesheet" />
+{% endblock style %}
+
+{% block content %}
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-12 justify-content-center">
+                <form class="form pb-10" id="search-form" method="POST" action="{% url 'home' %}">
+                    {% csrf_token %}
+                    <div class="row my-15 justify-content-center">
+                        <div class="m-5">
+                            <a class="btn btn-action" id="user-location-btn"><i class="fa fa-map-marker-alt"></i></a>
+                        </div>
+
+                        <div class="form-group col-6 m-5">
+                            <input name="city" type="text" class="form-control" id="city" autocomplete="off" placeholder="Search for a City" required="required">
+                            <input type="hidden" name="lat" value="0" />
+                            <input type="hidden" name="long" value="0" />
+                        </div>
+
+                        <div class="m-5">
+                            <a class="btn btn-action" id="search-btn"><i class="fa fa-search"></i></a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        {% if search %}
+            {% if error %}
+                <div class="search-error p-10">
+                    <h4 class="text-danger">Warning</h4>
+                    <p>The name of the city <span class="font-weight-bold text-secondary">'{{city}}'</span> you entered does not exist, Verify his name is correct!</p>
+                </div>
+                <div class="col-12 text-center pt-10">
+                    <img src="{% static '404.svg' %}" width=60%>
+                </div>
+            {% else %}
+                {% include 'card.html' %}
+            {% endif %}
+        {% else %}
+            <div class="row">
+                <div class="col-lg-6 col-md-12 text-center">
+                    <p class="home-title text-muted">The World Weather Search</p>
+                    <p class="home-text"> — Search for City — </p>
+                    {% include 'icons.html' %}
+                </div>
+
+                <div class="col-lg-6 col-md-12 text-center pt-10">
+                    <img src="{% static 'weather.svg' %}" width=70%>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock content %}
+
+{% comment %} {% block script %}
+    //<script>
+    //    document.querySelector("#search-form").addEventListener("submit", postData);
+    //    function postData(event) {
+    //    event.preventDefault();
+
+    //    let city = document.getElementById("city").value;
+
+    //    let dataForm = new FormData();
+
+    //    dataForm.append("city", city);
+    //    dataForm.append("csrfmiddlewaretoken", "{{ csrf_token }}");
+
+    //    fetch('{% url "get_weather_as_json" %}', {
+    //        method: "post",
+    //        body: dataForm,
+    //    }).then((result) => {
+    //        console.log("Success:", result);
+    //    });
+    //    }
+    //</script>
+{% endblock script %} {% endcomment %}

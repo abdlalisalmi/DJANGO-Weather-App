@@ -1,0 +1,72 @@
+<!DOCTYPE html> {% load static %}
+<html>
+<head>
+  <!-- Meta tags -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+  <meta name="viewport" content="width=device-width" />
+
+
+  <title>Weather</title>
+
+  <!-- Icons -->
+  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+
+  <!-- Halfmoon CSS -->
+  <link href="{% static 'halfmoon/halfmoon.min.css' %}" rel="stylesheet" />
+
+  {% block style %} {% endblock style %}
+
+</head>
+<body>
+  	<!-- Page wrapper with navbar, sidebar, and navbar fixed bottom -->
+  	<div class="page-wrapper with-navbar with-navbar-fixed-bottom">
+
+		<!-- Navbar -->
+		<nav class="navbar">
+			<a href="{% url 'home' %}" class="navbar-brand ml-10 ml-sm-20">
+				<img src="{% static 'logo.svg' %} ">
+				Weather
+			</a>
+			<div class="navbar-content ml-auto">
+				<button class="btn btn-action mr-5" type="button" onclick="halfmoon.toggleDarkMode()" aria-label="Toggle dark mode">
+						<i class="fa fa-moon" aria-hidden="true"></i>
+				</button>
+				{% comment %} <a href="#" class="btn btn-primary" role="button">Get started</a> {% endcomment %}
+			</div>
+		</nav>
+
+		<!-- Content wrapper -->
+		<div class="content-wrapper">
+			{% block content %}
+			{% endblock content %}
+		</div>
+
+		<!-- Navbar fixed bottom -->
+		<nav class="navbar navbar-fixed-bottom">
+			<ul class="navbar-nav ml-auto"> <!-- ml-auto = margin-left: auto -->
+				<li class="nav-item">
+					<a href="{% url 'contact' %}" class="nav-link">Contact</a>
+				</li>
+				<li class="nav-item">
+					<a href="https://github.com/abdlalisalmi" class="nav-link" target="_blank">Github</a>
+				</li>
+				<li class="nav-item">
+					<a href="{% url 'api' %}" class="nav-link">API</a>
+				</li>
+			</ul>
+			<!-- Navbar text -->
+			<span class="navbar-text">
+				&copy; Weather
+			</span>
+      	</nav>
+
+  	</div>
+
+	<!-- Halfmoon JS -->
+	<script src="{% static 'halfmoon/halfmoon.min.js' %}"></script>
+	<script src="{% static 'js/app.js' %}"></script>
+	{% block script %} {% endblock script %}
+</body>
+</html>

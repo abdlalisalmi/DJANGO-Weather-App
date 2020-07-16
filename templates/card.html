@@ -1,0 +1,110 @@
+
+<div class="weather-global-container">
+    <div class="weather-side">
+        <div class="weather-gradient"></div>
+        <div class="date-container">
+            <h2 class="date-dayname text-white">{{today}}</h2>
+            <span class="date-day"><i class="fa fa-clock"></i> {% now "d M Y" %}</span>
+            <i class="fa fa-map-marker-alt"></i>
+            <span class="location"> {{location.city}}, {{location.country}}</span>
+        </div>
+        <div class="weather-container">
+
+            <!--for the perfect icon-->
+            {% if condition.code in sunny %}
+                <div icon="sunny">
+                <span class="sun"></span>
+                </div>
+            {% elif condition.code in cloudy %}
+                <div icon="cloudy">
+                <span class="cloud"></span>
+                <span class="cloud"></span>
+                </div>
+            {% elif condition.code in snowy %}
+                <div icon="snowy">
+                <span class="snowman"></span>
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+                </div>
+            {% elif condition.code in stormy %}
+                <div icon="stormy">
+                    <span class="cloud"></span>
+                    <ul>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+            {% elif condition.code in supermoon %}
+                <div icon="supermoon">
+                    <span class="moon"></span>
+                    <span class="meteor"></span>
+                </div>
+            {% endif %}
+
+            <h1 class="weather-temp text-white">{{condition.temperature}}°C</h1>
+            <h3 class="weather-desc text-white">{{condition.text}}</h3>
+        </div>
+    </div>
+
+    <div class="info-side">
+        <div class="today-info-container">
+            <div class="today-info">
+                <div class="wind"> <span class="title">WIND</span><span class="value">{{wind.speed}} km/h</span>
+                    <div class="clear"><hr></div>
+                </div>
+                <div class="humidity"> <span class="title">HUMIDITY</span><span class="value">{{humidity}} %</span>
+                    <div class="clear"><hr></div>
+                </div>
+                <div class="precipitation"> <span class="title">SUN</span><span class="value"><span class="text-success">Sunrise: </span>{{astronomy.sunrise}}, <span class="text-success">Sunset: </span>{{astronomy.sunset}}</span>
+                    <div class="clear"><hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row justify-content-center week-container">
+    <div class="col-12 text-center">
+        <p class="forecast-title text-muted">— Forecasts for 10 days —</p>
+    </div>
+    <ul class="col-12 week-list">
+        <li class="active">
+            <i class="day-icon"></i>
+            <span class="day-name">{{forecasts.0.day}}</span>
+            <span class="day-temp-up"><i class="fa fa-sort-up"></i> {{forecasts.0.high}}°C</span>
+            <span class="day-temp-down"><i class="fa fa-sort-down"></i> {{forecasts.0.low}}°C</span>
+        </li>
+        {% for forecast in forecasts|slice:"1:" %}
+            <li>
+                <span class="day-name">{{forecast.day}}</span>
+                <hr>
+                <span class="day-temp-up"><i class="fa fa-sort-up"></i> {{forecast.high}}°C</span>
+                <span class="day-temp-down"><i class="fa fa-sort-down"></i> {{forecast.low}}°C</span>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="location-container" >
+    <button class="location-button" id="change-location">
+        <i data-feather="map-pin"></i>
+        <span>Change location</span>
+    </button>
+</div>
