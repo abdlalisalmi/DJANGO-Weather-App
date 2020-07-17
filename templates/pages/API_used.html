@@ -1,0 +1,31 @@
+{% extends 'base.html' %} {% load static %}
+
+{% block style %}
+<link href="{% static 'css/weatherIcons.css' %}" rel="stylesheet" />
+<link href="{% static 'css/app.css' %}" rel="stylesheet" />
+{% endblock style %}
+
+{% block title %}{{ block.super }} | API{% endblock title %}
+
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <p class="home-title text-muted">The World Weather Search</p>
+                <p class="home-text"> — The API Used — </p>
+                {% include 'icons.html' %}
+            </div>
+
+            <div class="col-10 text-center pt-20">
+                <p class="font-size-16">The Yahoo Weather API allows developers to integrate weather information 
+                for any location into third-party applications. Available information includes 
+                the 10-day forecast, wind, atmospheric conditions, precipitation, sunset time, 
+                astronomy conditions, and more. Developers can look up weather by WOEID 
+                (Where On Earth IDentifier), city name, or lat/long coordinates.</p>
+            </div>
+            <div class="col-4 text-center p-10">
+                <a href="/" class="btn"><i class="fa fa-home"></i></a>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width" />
 
 
-  <title>Weather</title>
+  <title>{% block title %}Weather{% endblock title %}</title>
 
   <!-- Icons -->
   <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
@@ -33,7 +33,7 @@
 				<button class="btn btn-action mr-5" type="button" onclick="halfmoon.toggleDarkMode()" aria-label="Toggle dark mode">
 						<i class="fa fa-moon" aria-hidden="true"></i>
 				</button>
-				{% comment %} <a href="#" class="btn btn-primary" role="button">Get started</a> {% endcomment %}
+				<a href="https://github.com/abdlalisalmi/DJANGO-Weather-App" target="_blank" class="btn" role="button"><i class="fab fa-github"></i></a>
 			</div>
 		</nav>
 
@@ -46,9 +46,6 @@
 		<!-- Navbar fixed bottom -->
 		<nav class="navbar navbar-fixed-bottom">
 			<ul class="navbar-nav ml-auto"> <!-- ml-auto = margin-left: auto -->
-				<li class="nav-item">
-					<a href="{% url 'contact' %}" class="nav-link">Contact</a>
-				</li>
 				<li class="nav-item">
 					<a href="https://github.com/abdlalisalmi" class="nav-link" target="_blank">Github</a>
 				</li>
